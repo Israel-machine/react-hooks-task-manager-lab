@@ -35,8 +35,27 @@ export function TaskProvider({ children }) {
             .catch((e) => console.log(e))
     }
 
+    const addTask = (title) => {
+        fetch(`http://localhost:6001/tasks`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                title,
+                completed: false,
+            })
+        })
+            .then(response => response.json())
+            .then(task => {
+                getTasks()
+                console.log(task)
+            })
+            .catch((e) => console.log(e))
+    }
+
     return (
-        <TaskContext.Provider value={{ tasks, setTasks, toggleComplete }}>
+        <TaskContext.Provider value={{ tasks, setTasks, toggleComplete, addTask }}>
             {children}
         </TaskContext.Provider>
     )

@@ -1,8 +1,9 @@
 import React, { useState, useId, useContext } from "react";
-import { TaskContext } from "../context/TaskContext";
+import { TaskContext, useTasks } from "../context/TaskContext";
 
 function TaskForm() {
   const [taskName, setTaskName] = useState("");
+  const { addTask } = useTasks()
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -19,7 +20,7 @@ function TaskForm() {
         onChange={(e) => setTaskName(e.target.value)}
         placeholder="Add a new task..."
       />
-      <button type="submit">Add Task</button>
+      <button type="submit" onClick={() => addTask(taskName)}>Add Task</button>
     </form>
   );
 }
