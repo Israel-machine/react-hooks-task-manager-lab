@@ -7,8 +7,6 @@ function TaskList({ query }) {
     task.title.toLowerCase().includes(query.toLowerCase())
   );
 
-
-
   return (
     <ul>
       {filteredTasks.map((task) => (
